@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Mẹ Yêu Nhân Ngày 20/10 ❤️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Quicksand, Dancing Script, Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --pink-bg: #fff0f3;
+            --env-body: #ffccd5;
+            --env-flap: #ffb3c1;
+            --env-pocket: #ff8fa3;
+            --rose-red: #e63946;
+            --deep-pink: #c9184a;
+            --paper-cream: #fffdf9;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: radial-gradient(circle at top, #ffe5ec 0%, #ffc2d1 50%, #ffb3c6 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-serif-vn {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Floating Petals & Hearts Background Canvas */
+        #petal-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 3D Envelope Styling */
+        .envelope-wrapper {
+            perspective: 1200px;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .envelope-wrapper:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .envelope {
+            position: relative;
+            width: 340px;
+            height: 230px;
+            background: #ff8fa3;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 20px 40px rgba(201, 24, 74, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.6) inset;
+            cursor: pointer;
+            transform-style: preserve-3d;
+        }
+
+        @media (min-width: 640px) {
+            .envelope {
+                width: 420px;
+                height: 280px;
+            }
+        }
+
+        /* Envelope Top Flap */
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffb3c1 0%, #ff8fa3 100%);
+            clip-path: polygon(0 0, 100% 0, 50% 58%);
+            transform-origin: top;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s 0.4s;
+            z-index: 30;
+            filter: drop-shadow(0 4px 6px rgba(164, 19, 60, 0.15));
+        }
+
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+            z-index: 5;
+        }
+
+        /* Envelope Front Pocket */
+        .pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #ffccd5 0%, #ffb3c1 100%);
+            clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%);
+            border-radius: 0 0 16px 16px;
+            z-index: 20;
+            box-shadow: inset 0 -10px 25px rgba(255, 117, 143, 0.3);
+        }
+
+        /* Envelope Bottom Triangle Overlay for Depth */
+        .pocket-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #ffdae0 0%, #ffc2d1 100%);
+            clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+            border-radius: 0 0 16px 16px;
+            z-index: 21;
+            filter: drop-shadow(0 -3px 5px rgba(201, 24, 74, 0.1));
+        }
+
+        /* Preview Letter Inside Envelope */
+        .letter-preview {
+            position: absolute;
+            bottom: 12px;
+            left: 5%;
+            width: 90%;
+            height: 88%;
+            background: var(--paper-cream);
+            border-radius: 12px;
+            z-index: 10;
+            transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 2px dashed #ffb3c1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 18px;
+        }
+
+        .envelope.open .letter-preview {
+            transform: translateY(-130px) scale(1.03);
+        }
+
+        /* Heart Wax Seal */
+        .wax-seal {
+            position: absolute;
+            top: 53%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px;
+            height: 64px;
+            background: radial-gradient(circle at 30% 30%, #ff4d6d, #c9184a 70%, #800f2f 100%);
+            border-radius: 50%;
+            z-index: 35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 15px rgba(128, 15, 47, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 0 0 4px rgba(255, 77, 109, 0.25);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            animation: pulse-seal 2s infinite;
+        }
+
+        .envelope.open .wax-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.3);
+            pointer-events: none;
+        }
+
+        @keyframes pulse-seal {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.08); }
+        }
+
+        /* Full Letter Paper Texture & Style */
+        .letter-paper {
+            background-color: var(--paper-cream);
+            background-image: 
+                radial-gradient(#ffccd5 1px, transparent 1px), 
+                radial-gradient(#ffe5ec 1px, var(--paper-cream) 1px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            box-shadow: 0 25px 60px rgba(164, 19, 60, 0.28), 0 0 0 1px rgba(255, 179, 193, 0.6);
+            position: relative;
+        }
+
+        .letter-border {
+            border: 2px solid #ffb3c1;
+            position: relative;
+        }
+
+        /* Cute Mom Avatar Glow & Float */
+        .mom-portrait-container {
+            animation: float-slow 4s ease-in-out infinite;
+        }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        /* Pop-up Compliment Toast */
+        .floating-wish {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            animation: float-up-fade 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes float-up-fade {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.7);
+            }
+            15% {
+                opacity: 1;
+                transform: translateY(0px) scale(1.05);
+            }
+            30% {
+                transform: translateY(-10px) scale(1);
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-90px) scale(0.95);
+            }
+        }
+
+        /* Voucher Card Perforated Edge Effect */
+        .voucher-card {
+            position: relative;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe5ec 100%);
+            border: 2px dashed #ff8fa3;
+            transition: all 0.3s ease;
+        }
+
+        .voucher-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.15);
+            border-color: #ff4d6d;
+        }
+
+        .voucher-card.redeemed {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffe5ec 100%);
+            border-style: solid;
+            border-color: #c9184a;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffe5ec;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff8fa3;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff4d6d;
+        }
+    </style>
+</head>
+<body class="relative flex flex-col items-center justify-center min-h-screen py-8 px-4">
+
+    <!-- Background Floating Petals & Hearts Canvas -->
+    <canvas id="petal-canvas"></canvas>
+
+    <!-- Top Floating Controls Bar -->
+    <div class="fixed top-4 right-4 z-50 flex items-center gap-2 sm:gap-3">
+        <!-- Music Toggle Button -->
+        <button id="music-btn" onclick="toggleMusic()" class="flex items-center gap-2 bg-white/90 hover:bg-white text-pink-600 px-3.5 py-2 rounded-full shadow-lg border border-pink-200 transition-all hover:scale-105 active:scale-95 text-sm font-semibold">
+            <i id="music-icon" class="fa-solid fa-music"></i>
+            <span id="music-text" class="hidden sm:inline">Nhạc nền: Tắt</span>
+        </button>
+
+        <!-- Customize Letter Button -->
+        <button onclick="openEditModal()" class="flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-3.5 py-2 rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 text-sm font-semibold" title="Tùy chỉnh nội dung & ảnh của Mẹ">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span class="hidden sm:inline">Sửa thư / Đổi ảnh Mẹ</span>
+        </button>
+    </div>
+
+    <!-- ==================== STAGE 1: CLOSED ENVELOPE VIEW ==================== -->
+    <div id="envelope-stage" class="relative z-10 flex flex-col items-center justify-center w-full max-w-lg mx-auto my-auto transition-all duration-700">
+        
+        <!-- Header Badge -->
+        <div class="mb-6 text-center">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-sm text-pink-700 text-sm font-bold shadow-sm border border-pink-200 mb-3">
+                <span>🌸</span> Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10 <span>🌸</span>
+            </span>
+            <h1 class="font-handwriting text-4xl sm:text-5xl text-pink-800 drop-shadow-sm">
+                Gửi Người Phụ Nữ Tuyệt Vời Nhất
+            </h1>
+        </div>
+
+        <!-- Decorative Roses Around Envelope -->
+        <div class="relative flex items-center justify-center my-4">
+            <!-- Left Rose Cluster SVG -->
+            <div class="absolute -left-6 -bottom-5 z-30 pointer-events-none transform -rotate-12">
+                <svg width="85" height="85" viewBox="0 0 100 100">
+                    <!-- Leaves -->
+                    <path d="M25,70 Q5,65 10,45 Q30,50 25,70 Z" fill="#52b788" />
+                    <path d="M55,85 Q75,95 85,75 Q65,65 55,85 Z" fill="#40916c" />
+                    <!-- Rose Bloom -->
+                    <circle cx="45" cy="55" r="24" fill="#ff4d6d" />
+                    <path d="M30,50 C35,35 55,35 60,50 C65,65 40,75 30,60 C25,52 38,42 48,48 C55,53 45,62 40,56" fill="none" stroke="#fff0f3" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Small Bud -->
+                    <circle cx="22" cy="35" r="12" fill="#ff758f" />
+                    <path d="M16,32 Q22,25 28,35" fill="none" stroke="#fff0f3" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- Right Rose Cluster SVG -->
+            <div class="absolute -right-6 -top-6 z-30 pointer-events-none transform rotate-12">
+                <svg width="85" height="85" viewBox="0 0 100 100">
+                    <path d="M70,35 Q90,25 85,45 Q75,50 70,35 Z" fill="#52b788" />
+                    <path d="M35,25 Q20,10 15,30 Q30,35 35,25 Z" fill="#40916c" />
+                    <circle cx="52" cy="45" r="22" fill="#e63946" />
+                    <path d="M38,42 C42,28 62,28 65,42 C68,55 45,65 38,52 C34,44 45,36 54,42 C60,46 50,54 46,48" fill="none" stroke="#ffe5ec" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="75" cy="65" r="13" fill="#ff8fa3" />
+                </svg>
+            </div>
+
+            <!-- Interactive 3D Envelope -->
+            <div class="envelope-wrapper" onclick="openEnvelope()">
+                <div id="envelope" class="envelope">
+                    <!-- Top Flap -->
+                    <div class="flap"></div>
+
+                    <!-- Inner Letter Preview -->
+                    <div class="letter-preview">
+                        <div class="text-pink-500 text-xs font-bold tracking-widest uppercase mb-1">20 • 10</div>
+                        <div class="font-handwriting text-2xl sm:text-3xl text-pink-700 font-bold">Gửi Mẹ Yêu Của Con ❤️</div>
+                        <div class="mt-2 flex gap-1 text-pink-400 text-sm">
+                            <i class="fa-solid fa-heart"></i>
+                            <i class="fa-solid fa-heart"></i>
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+
+                    <!-- Front Pocket -->
+                    <div class="pocket"></div>
+                    <div class="pocket-bottom"></div>
+
+                    <!-- Envelope Front Stamp & Recipient Label -->
+                    <div class="absolute bottom-4 right-5 z-25 pointer-events-none text-right">
+                        <p class="font-handwriting text-xl sm:text-2xl text-pink-800/90">Người nhận: <span class="font-bold underline decoration-pink-400">Mẹ Yêu</span></p>
+                    </div>
+
+                    <!-- Wax Seal Heart Button -->
+                    <div class="wax-seal" title="Nhấn để mở thư">
+                        <i class="fa-solid fa-heart text-white text-2xl drop-shadow"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to action prompt -->
+        <div class="mt-8 text-center">
+            <button onclick="openEnvelope()" class="group relative inline-flex items-center gap-3 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold px-7 py-3.5 rounded-full shadow-xl shadow-pink-500/30 transition-all hover:scale-105 active:scale-95">
+                <span>Nhấn vào phong bì để mở thư nhé Mẹ yêu!</span>
+                <span class="inline-block group-hover:scale-125 transition-transform">💌</span>
+            </button>
+            <p class="text-xs text-pink-800/75 mt-3 font-medium">
+                <i class="fa-solid fa-volume-high mr-1"></i> Mở thư sẽ tự động bật giai điệu hộp nhạc dịu dàng
+            </p>
+        </div>
+    </div>
+
+    <!-- ==================== STAGE 2: OPENED FULL LETTER VIEW ==================== -->
+    <div id="letter-stage" class="hidden relative z-20 w-full max-w-3xl mx-auto my-4 transition-all duration-700 opacity-0 translate-y-8">
+        
+        <!-- Main Letter Paper -->
+        <div class="letter-paper rounded-3xl p-4 sm:p-8 md:p-10">
+            <div class="letter-border rounded-2xl p-5 sm:p-8 md:p-10 bg-white/60 backdrop-blur-sm">
+                
+                <!-- Corner Floral Ornaments -->
+                <div class="absolute top-3 left-3 text-2xl sm:text-3xl select-none pointer-events-none">🌹</div>
+                <div class="absolute top-3 right-3 text-2xl sm:text-3xl select-none pointer-events-none">🌹</div>
+                <div class="absolute bottom-3 left-3 text-2xl sm:text-3xl select-none pointer-events-none">🌸</div>
+                <div class="absolute bottom-3 right-3 text-2xl sm:text-3xl select-none pointer-events-none">🌸</div>
+
+                <!-- Top Date & Ribbon Badge -->
+                <div class="flex flex-col items-center text-center mb-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-pink-100 text-pink-700 text-xs sm:text-sm font-bold tracking-wide uppercase mb-4 border border-pink-200">
+                        <i class="fa-solid fa-heart text-rose-500"></i>
+                        Ngày Phụ Nữ Việt Nam 20 Tháng 10
+                        <i class="fa-solid fa-heart text-rose-500"></i>
+                    </div>
+
+                    <!-- ==================== CUTE ILLUSTRATED MOM PORTRAIT ==================== -->
+                    <div class="mom-portrait-container relative group">
+                        <!-- Outer Floral Halo Frame -->
+                        <div class="w-44 h-44 sm:w-52 sm:h-52 rounded-full bg-gradient-to-b from-pink-100 via-rose-50 to-pink-200 p-2 shadow-xl border-4 border-white ring-4 ring-pink-200/80 flex items-center justify-center overflow-hidden relative">
+                            
+                            <!-- CustomUploaded Photo (Hidden by default unless user uploads) -->
+                            <img id="custom-mom-photo" src="" alt="Ảnh của Mẹ" class="hidden w-full h-full object-cover rounded-full" />
+
+                            <!-- Default Cute Hand-Crafted SVG Illustration of Loving Mom holding Roses -->
+                            <svg id="default-mom-svg" viewBox="0 0 240 240" class="w-full h-full">
+                                <defs>
+                                    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="#fff0f3" />
+                                        <stop offset="100%" stop-color="#ffccd5" />
+                                    </radialGradient>
+                                    <linearGradient id="aoDaiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ff758f" />
+                                        <stop offset="100%" stop-color="#c9184a" />
+                                    </linearGradient>
+                                    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#3d2622" />
+                                        <stop offset="100%" stop-color="#1f110f" />
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Soft Circle Background -->
+                                <circle cx="120" cy="120" r="115" fill="url(#bgGlow)" />
+
+                                <!-- Little Floating Hearts inside Portrait -->
+                                <path d="M45,55 C45,50 38,48 38,53 C38,48 31,50 31,55 C31,61 38,65 38,65 C38,65 45,61 45,55 Z" fill="#ff4d6d" opacity="0.7" />
+                                <path d="M205,65 C205,60 198,58 198,63 C198,58 191,60 191,65 C191,71 198,75 198,75 C198,75 205,71 205,65 Z" fill="#ff4d6d" opacity="0.7" />
+                                <circle cx="50" cy="95" r="3" fill="#ffb3c1" />
+                                <circle cx="195" cy="100" r="3.5" fill="#ffb3c1" />
+
+                                <!-- Back Hair Bun & Flowing Waves -->
+                                <circle cx="120" cy="48" r="28" fill="url(#hairGrad)" />
+                                <path d="M62,105 C50,145 58,185 75,205 L165,205 C182,185 190,145 178,105 Z" fill="url(#hairGrad)" />
+
+                                <!-- Cute Floral Hairpin on Bun -->
+                                <circle cx="96" cy="54" r="9" fill="#ff8fa3" />
+                                <circle cx="96" cy="54" r="4" fill="#fff3b0" />
+                                <path d="M85,58 Q75,65 82,70" stroke="#ff4d6d" stroke-width="2.5" fill="none" stroke-linecap="round" />
+
+                                <!-- Neck & Shoulders (Pink Áo Dài) -->
+                                <path d="M65,235 C68,185 92,172 120,172 C148,172 172,185 175,235 Z" fill="url(#aoDaiGrad)" />
+                                <!-- Áo Dài Collar & Pearl Necklace -->
+                                <path d="M103,166 L120,182 L137,166" fill="#ffccd5" stroke="#fff" stroke-width="1.5" />
+                                <rect x="108" y="150" width="24" height="24" rx="10" fill="#ffe5d9" />
+                                <!-- Pearl Necklace -->
+                                <circle cx="105" cy="175" r="3" fill="#ffffff" />
+                                <circle cx="112" cy="180" r="3" fill="#ffffff" />
+                                <circle cx="120" cy="182" r="3.5" fill="#ffffff" />
+                                <circle cx="128" cy="180" r="3" fill="#ffffff" />
+                                <circle cx="135" cy="175" r="3" fill="#ffffff" />
+
+                                <!-- Ears & Pearl Earrings -->
+                                <circle cx="71" cy="122" r="10" fill="#ffe5d9" />
+                                <circle cx="169" cy="122" r="10" fill="#ffe5d9" />
+                                <circle cx="70" cy="133" r="4" fill="#ffffff" stroke="#ffccd5" stroke-width="1" />
+                                <circle cx="170" cy="133" r="4" fill="#ffffff" stroke="#ffccd5" stroke-width="1" />
+
+                                <!-- Face Base -->
+                                <path d="M73,106 C73,72 95,62 120,62 C145,62 167,72 167,106 C167,140 145,162 120,162 C95,162 73,140 73,106 Z" fill="#fff1e6" />
+
+                                <!-- Soft Rosy Blushing Cheeks -->
+                                <ellipse cx="90" cy="128" rx="11" ry="6.5" fill="#ff8fa3" opacity="0.55" />
+                                <ellipse cx="150" cy="128" rx="11" ry="6.5" fill="#ff8fa3" opacity="0.55" />
+
+                                <!-- Gentle Happy Eyes (Warm & Loving) -->
+                                <path d="M88,112 Q98,101 108,112" fill="none" stroke="#3d2622" stroke-width="3.5" stroke-linecap="round" />
+                                <path d="M86,109 L83,105" stroke="#3d2622" stroke-width="2.2" stroke-linecap="round" />
+                                <path d="M132,112 Q142,101 152,112" fill="none" stroke="#3d2622" stroke-width="3.5" stroke-linecap="round" />
+                                <path d="M154,109 L157,105" stroke="#3d2622" stroke-width="2.2" stroke-linecap="round" />
+
+                                <!-- Soft Eyebrows -->
+                                <path d="M87,96 Q98,91 107,95" fill="none" stroke="#4a302c" stroke-width="2.2" stroke-linecap="round" />
+                                <path d="M133,95 Q142,91 153,96" fill="none" stroke="#4a302c" stroke-width="2.2" stroke-linecap="round" />
+
+                                <!-- Cute Little Nose -->
+                                <path d="M119,120 Q122,124 118,126" fill="none" stroke="#e29578" stroke-width="2" stroke-linecap="round" />
+
+                                <!-- Warm Loving Smile -->
+                                <path d="M106,136 Q120,148 134,136" fill="none" stroke="#d62828" stroke-width="3" stroke-linecap="round" />
+                                <path d="M110,138 Q120,145 130,138 Z" fill="#ff758f" opacity="0.4" />
+
+                                <!-- Front Hair Bangs Swept Gently -->
+                                <path d="M70,110 C68,75 95,55 120,56 C145,55 172,75 170,110 C162,88 145,76 125,74 C112,92 85,96 70,110 Z" fill="url(#hairGrad)" />
+
+                                <!-- Bouquet of Pink & Red Roses Held in Front -->
+                                <g transform="translate(0, 8)">
+                                    <!-- Bouquet Wrapping Paper -->
+                                    <path d="M85,195 L120,240 L155,195 L145,180 L95,180 Z" fill="#ffe5ec" stroke="#ffb3c1" stroke-width="2" />
+                                    <!-- Leaves -->
+                                    <ellipse cx="95" cy="182" rx="10" ry="5" transform="rotate(-25 95 182)" fill="#52b788" />
+                                    <ellipse cx="145" cy="182" rx="10" ry="5" transform="rotate(25 145 182)" fill="#52b788" />
+                                    <ellipse cx="120" cy="175" rx="8" ry="12" fill="#40916c" />
+                                    <!-- Left Rose -->
+                                    <circle cx="102" cy="186" r="13" fill="#ff758f" />
+                                    <path d="M96,184 Q102,178 108,185 Q102,192 98,186" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" />
+                                    <!-- Right Rose -->
+                                    <circle cx="138" cy="186" r="13" fill="#ff758f" />
+                                    <path d="M132,184 Q138,178 144,185 Q138,192 134,186" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" />
+                                    <!-- Center Main Rose -->
+                                    <circle cx="120" cy="182" r="15" fill="#e63946" />
+                                    <path d="M112,180 C115,172 125,172 128,180 C130,188 116,192 113,184 C111,179 118,176 122,180" fill="none" stroke="#ffe5ec" stroke-width="2" stroke-linecap="round" />
+                                    <!-- Cute Ribbon Bow on Bouquet -->
+                                    <path d="M110,212 L130,212 L120,218 Z" fill="#c9184a" />
+                                    <circle cx="120" cy="213" r="4" fill="#ff4d6d" />
+                                </g>
+                            </svg>
+                        </div>
+
+                        <!-- Cute Decorative Floating Tag Under Portrait -->
+                        <div class=" -mt-4 relative z-10 bg-gradient-to-r from-rose-500 to-pink-500 text-white px-5 py-1 rounded-full shadow-md text-sm font-bold inline-flex items-center gap-1.5">
+                            <span>👑</span> Mẹ Yêu Của Con <span>👑</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== LETTER GREETING & BODY ==================== -->
+                <div class="max-w-2xl mx-auto mt-6 text-gray-800 space-y-4 leading-relaxed text-base sm:text-lg">
+                    
+                    <h2 id="letter-title-display" class="font-handwriting text-3xl sm:text-4xl text-rose-600 font-bold text-center sm:text-left mb-4">
+                        Gửi Mẹ yêu quý nhất trên đời của con! ❤️
+                    </h2>
+
+                    <div id="letter-body-display" class="space-y-4 text-gray-700 font-medium leading-8 text-justify sm:text-left">
+                        <p>
+                            Nhân ngày Phụ nữ Việt Nam <strong>20/10</strong>, con muốn gửi đến Mẹ bức thư nhỏ mang theo ngàn lời yêu thương và lòng biết ơn sâu sắc nhất từ tận đáy lòng con.
+                        </p>
+                        <p>
+                            Cảm ơn Mẹ vì đã luôn là bầu trời bình yên, là điểm tựa vững chắc và dịu dàng nhất của con. Cảm ơn Mẹ vì những bữa cơm nóng hổi thơm ngon, những đêm thức trắng lo lắng khi con ốm, và cả những hy sinh thầm lặng suốt bao năm tháng để đổi lấy nụ cười và sự trưởng thành của con hôm nay.
+                        </p>
+                        <p>
+                            Dù con có lớn khôn đến đâu, đi qua bao nhiêu nơi, thì trong vòng tay Mẹ, con vẫn luôn thấy mình là đứa trẻ hạnh phúc và may mắn nhất thế gian.
+                        </p>
+                        <p>
+                            Ngày 20/10 năm nay và cả 365 ngày trong năm, con chỉ ước mong Mẹ luôn thật <strong>dồi dào sức khỏe, bình an, bớt lo toan vất vả</strong> và lúc nào trên môi cũng nở nụ cười rạng rỡ như những đóa hoa hồng.
+                        </p>
+                    </div>
+
+                    <!-- Highlight Quote Box -->
+                    <div class="my-6 p-4 sm:p-5 rounded-2xl bg-pink-50/90 border-l-4 border-rose-500 text-rose-800 italic text-center font-serif-vn">
+                        "Thế giới có hàng tỷ bông hoa đẹp, nhưng với con, bông hoa rực rỡ và ấm áp nhất mãi mãi là Mẹ!" 🌹
+                    </div>
+
+                    <!-- Signature -->
+                    <div class="pt-2 text-right">
+                        <p class="text-sm text-gray-500 font-medium">Ngày 20 tháng 10 đầy nắng ấm,</p>
+                        <p id="letter-sender-display" class="font-handwriting text-3xl sm:text-4xl text-rose-600 font-bold mt-1">
+                            Con của Mẹ (Yêu Mẹ 3000!) ❤️
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="my-8 flex items-center justify-center gap-4">
+                    <div class="h-px bg-pink-200 flex-1"></div>
+                    <span class="text-pink-400 text-xl">❦ 🌹 ❦</span>
+                    <div class="h-px bg-pink-200 flex-1"></div>
+                </div>
+
+                <!-- ==================== INTERACTIVE SURPRISE 1: VOUCHERS FOR MOM ==================== -->
+                <div class="mt-6">
+                    <div class="text-center mb-5">
+                        <h3 class="font-handwriting text-3xl text-pink-700 font-bold">
+                            🎁 Quà Tặng Đặc Quyền Dành Riêng Cho Mẹ 🎁
+                        </h3>
+                        <p class="text-sm text-gray-600 mt-1">
+                            Mẹ hãy nhấn vào từng chiếc phiếu dưới đây để "nhận quà" nhé! Phiếu có giá trị vô thời hạn ạ ❤️
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <!-- Voucher 1 -->
+                        <div onclick="redeemVoucher(this, '1 Buổi Massage Vai Cổ Gáy')" class="voucher-card rounded-2xl p-4 cursor-pointer flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-xl bg-rose-500 text-white flex items-center justify-center text-2xl shrink-0 shadow">
+                                💆‍♀️
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-rose-800 text-base">Phiếu Massage Miễn Phí</h4>
+                                <p class="text-xs text-gray-600">Đấm lưng, bóp vai thư giãn bất cứ lúc nào Mẹ mỏi</p>
+                            </div>
+                            <span class="voucher-badge px-2.5 py-1 rounded-full bg-white text-pink-600 border border-pink-300 text-xs font-bold shrink-0">
+                                Nhận ngay
+                            </span>
+                        </div>
+
+                        <!-- Voucher 2 -->
+                        <div onclick="redeemVoucher(this, '1 Ngày Mẹ Nghỉ Ngơi Không Vào Bếp')" class="voucher-card rounded-2xl p-4 cursor-pointer flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500 text-white flex items-center justify-center text-2xl shrink-0 shadow">
+                                🍲
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-rose-800 text-base">Ngày Không Vào Bếp</h4>
+                                <p class="text-xs text-gray-600">Hôm nay Mẹ chỉ việc nghỉ ngơi, nấu nướng rửa bát để con lo!</p>
+                            </div>
+                            <span class="voucher-badge px-2.5 py-1 rounded-full bg-white text-pink-600 border border-pink-300 text-xs font-bold shrink-0">
+                                Nhận ngay
+                            </span>
+                        </div>
+
+                        <!-- Voucher 3 -->
+                        <div onclick="redeemVoucher(this, 'Đi Ăn Món Ngon Mẹ Thích')" class="voucher-card rounded-2xl p-4 cursor-pointer flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-xl bg-rose-400 text-white flex items-center justify-center text-2xl shrink-0 shadow">
+                                🍰
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-rose-800 text-base">Hẹn Hò Ăn Món Mẹ Thích</h4>
+                                <p class="text-xs text-gray-600">Một buổi đi ăn hoặc trà chiều do Mẹ toàn quyền chọn món</p>
+                            </div>
+                            <span class="voucher-badge px-2.5 py-1 rounded-full bg-white text-pink-600 border border-pink-300 text-xs font-bold shrink-0">
+                                Nhận ngay
+                            </span>
+                        </div>
+
+                        <!-- Voucher 4 -->
+                        <div onclick="redeemVoucher(this, '1000 Cái Ôm Thật Chặt')" class="voucher-card rounded-2xl p-4 cursor-pointer flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-xl bg-pink-600 text-white flex items-center justify-center text-2xl shrink-0 shadow">
+                                🤗
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-rose-800 text-base">1000 Cái Ôm Thật Chặt</h4>
+                                <p class="text-xs text-gray-600">Đặc quyền ôm Mẹ thật lâu kèm lời chúc ngọt ngào mỗi ngày</p>
+                            </div>
+                            <span class="voucher-badge px-2.5 py-1 rounded-full bg-white text-pink-600 border border-pink-300 text-xs font-bold shrink-0">
+                                Nhận ngay
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== INTERACTIVE SURPRISE 2: ROSE SHOWER BUTTONS ==================== -->
+                <div class="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                    <button onclick="sendRoseShower(event)" class="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-gradient-to-r from-rose-500 via-pink-500 to-rose-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold px-6 py-3.5 rounded-full shadow-lg shadow-rose-400/40 transition-all hover:scale-105 active:scale-95">
+                        <span class="text-xl">🌹</span>
+                        <span>Tặng Mẹ Thêm Ngàn Đoá Hồng (<span id="rose-counter">1</span>)</span>
+                    </button>
+
+                    <button onclick="closeEnvelope()" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-pink-100 hover:bg-pink-200 text-pink-800 font-bold px-5 py-3.5 rounded-full transition-all hover:scale-105 active:scale-95">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Đóng Phong Bì Lại</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL: CUSTOMIZE LETTER & MOM'S PHOTO ==================== -->
+    <div id="edit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border-2 border-pink-200 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-pink-100 pb-3 mb-4">
+                <h3 class="font-handwriting text-3xl text-rose-600 font-bold">✨ Tùy Chỉnh Lá Thư Cho Mẹ</h3>
+                <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-600 text-xl px-2">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <!-- Photo Switcher -->
+                <div class="p-3.5 rounded-2xl bg-pink-50 border border-pink-200">
+                    <label class="block font-bold text-pink-800 mb-1.5">
+                        <i class="fa-solid fa-image mr-1"></i> Ảnh chân dung của Mẹ:
+                    </label>
+                    <p class="text-xs text-gray-600 mb-2">
+                        Mặc định lá thư dùng tranh vẽ Mẹ dễ thương. Bạn có thể chọn ảnh thật của Mẹ từ máy để thay thế nhé!
+                    </p>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <label class="cursor-pointer bg-white hover:bg-pink-100 text-pink-700 font-semibold px-3 py-1.5 rounded-xl border border-pink-300 shadow-sm transition">
+                            <i class="fa-solid fa-upload mr-1"></i> Tải ảnh của Mẹ lên
+                            <input type="file" id="photo-upload" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+                        </label>
+                        <button onclick="resetToDefaultIllustration()" class="bg-rose-100 hover:bg-rose-200 text-rose-700 font-semibold px-3 py-1.5 rounded-xl transition">
+                            Dùng lại tranh vẽ dễ thương
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Title Input -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">Tiêu đề mở đầu:</label>
+                    <input type="text" id="input-title" class="w-full px-3.5 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400" value="Gửi Mẹ yêu quý nhất trên đời của con! ❤️">
+                </div>
+
+                <!-- Content Input -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">Nội dung lời chúc (mỗi đoạn cách nhau 1 dòng trống):</label>
+                    <textarea id="input-body" rows="6" class="w-full px-3.5 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400 leading-relaxed">Nhân ngày Phụ nữ Việt Nam 20/10, con muốn gửi đến Mẹ bức thư nhỏ mang theo ngàn lời yêu thương và lòng biết ơn sâu sắc nhất từ tận đáy lòng con.
+
+Cảm ơn Mẹ vì đã luôn là bầu trời bình yên, là điểm tựa vững chắc và dịu dàng nhất của con. Cảm ơn Mẹ vì những bữa cơm nóng hổi thơm ngon, những đêm thức trắng lo lắng khi con ốm, và cả những hy sinh thầm lặng suốt bao năm tháng để đổi lấy nụ cười và sự trưởng thành của con hôm nay.
+
+Dù con có lớn khôn đến đâu, đi qua bao nhiêu nơi, thì trong vòng tay Mẹ, con vẫn luôn thấy mình là đứa trẻ hạnh phúc và may mắn nhất thế gian.
+
+Ngày 20/10 năm nay và cả 365 ngày trong năm, con chỉ ước mong Mẹ luôn thật dồi dào sức khỏe, bình an, bớt lo toan vất vả và lúc nào trên môi cũng nở nụ cười rạng rỡ như những đóa hoa hồng.</textarea>
+                </div>
+
+                <!-- Sender Signature Input -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">Chữ ký người gửi:</label>
+                    <input type="text" id="input-sender" class="w-full px-3.5 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400" value="Con của Mẹ (Yêu Mẹ 3000!) ❤️">
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end gap-3">
+                <button onclick="closeEditModal()" class="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold">
+                    Hủy
+                </button>
+                <button onclick="saveCustomLetter()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold shadow-md">
+                    Lưu Thay Đổi ❤️
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* =========================================================================
+           1. FLOATING ROSE PETALS, HEARTS & ROSES CANVAS ANIMATION
+           ========================================================================= */
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class FloatingParticle {
+            constructor(isBurst = false, startX = null, startY = null) {
+                this.reset(isBurst, startX, startY);
+            }
+
+            reset(isBurst = false, startX = null, startY = null) {
+                this.x = startX !== null ? startX : Math.random() * canvas.width;
+                this.y = startY !== null ? startY : (isBurst ? canvas.height / 2 : Math.random() * canvas.height - canvas.height);
+                this.size = Math.random() * 12 + 8;
+                this.speedY = isBurst ? (Math.random() * -8 - 2) : (Math.random() * 1.2 + 0.6);
+                this.speedX = isBurst ? (Math.random() * 10 - 5) : (Math.random() * 1.2 - 0.6);
+                this.gravity = isBurst ? 0.14 : 0;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.03;
+                this.oscillationSpeed = Math.random() * 0.025 + 0.01;
+                this.oscillationTime = Math.random() * Math.PI * 2;
+                this.opacity = Math.random() * 0.55 + 0.35;
+                this.isBurst = isBurst;
+
+                // Choose type: 0 = Rose Petal, 1 = Heart, 2 = Little Rose Bud
+                const rand = Math.random();
+                if (rand < 0.55) {
+                    this.type = 'petal';
+                } else if (rand < 0.85) {
+                    this.type = 'heart';
+                } else {
+                    this.type = 'rose';
+                }
+
+                const colors = ['#ff4d6d', '#ff758f', '#ff8fa3', '#ffb3c1', '#c9184a'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            update() {
+                this.oscillationTime += this.oscillationSpeed;
+                if (this.isBurst) {
+                    this.speedY += this.gravity;
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.opacity -= 0.006;
+                } else {
+                    this.y += this.speedY;
+                    this.x += this.speedX + Math.sin(this.oscillationTime) * 0.6;
+                }
+                this.rotation += this.rotationSpeed;
+
+                if (!this.isBurst && this.y > canvas.height + 30) {
+                    this.reset(false);
+                    this.y = -20;
+                }
+            }
+
+            draw() {
+                if (this.opacity <= 0) return;
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.globalAlpha = Math.max(0, this.opacity);
+                ctx.fillStyle = this.color;
+
+                if (this.type === 'petal') {
+                    // Draw soft rose petal shape
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.bezierCurveTo(-this.size / 2, -this.size / 2, -this.size, this.size / 3, 0, this.size);
+                    ctx.bezierCurveTo(this.size, this.size / 3, this.size / 2, -this.size / 2, 0, 0);
+                    ctx.fill();
+                } else if (this.type === 'heart') {
+                    // Draw cute heart shape
+                    const s = this.size * 0.65;
+                    ctx.beginPath();
+                    ctx.moveTo(0, s / 4);
+                    ctx.bezierCurveTo(0, 0, -s / 2, 0, -s / 2, s / 4);
+                    ctx.bezierCurveTo(-s / 2, s / 2, 0, s * 0.75, 0, s);
+                    ctx.bezierCurveTo(0, s * 0.75, s / 2, s / 2, s / 2, s / 4);
+                    ctx.bezierCurveTo(s / 2, 0, 0, 0, 0, s / 4);
+                    ctx.fill();
+                } else {
+                    // Draw mini swirling rose bud
+                    const r = this.size * 0.5;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, r, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.strokeStyle = '#fff0f3';
+                    ctx.lineWidth = 1.2;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, r * 0.55, 0, Math.PI * 1.3);
+                    ctx.stroke();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        // Initialize gentle drifting particles
+        for (let i = 0; i < 38; i++) {
+            const p = new FloatingParticle(false);
+            p.y = Math.random() * canvas.height;
+            particles.push(p);
+        }
+
+        function triggerBurst(x, y, count = 35) {
+            for (let i = 0; i < count; i++) {
+                particles.push(new FloatingParticle(true, x, y));
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles = particles.filter(p => !p.isBurst || p.opacity > 0);
+            for (const p of particles) {
+                p.update();
+                p.draw();
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        /* =========================================================================
+           2. ENVELOPE OPEN / CLOSE INTERACTION
+           ========================================================================= */
+        let isEnvelopeOpen = false;
+
+        function openEnvelope() {
+            if (isEnvelopeOpen) return;
+            isEnvelopeOpen = true;
+
+            const envelope = document.getElementById('envelope');
+            const envelopeStage = document.getElementById('envelope-stage');
+            const letterStage = document.getElementById('letter-stage');
+
+            // Start gentle music box if not playing
+            if (!isPlayingMusic) {
+                startMusicBox();
+            }
+
+            // 1. Open top flap & slide preview up
+            envelope.classList.add('open');
+
+            // Burst hearts & petals from center
+            triggerBurst(window.innerWidth / 2, window.innerHeight / 2, 45);
+
+            // 2. Transition from Envelope stage to Full Letter stage
+            setTimeout(() => {
+                envelopeStage.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                setTimeout(() => {
+                    envelopeStage.classList.add('hidden');
+                    letterStage.classList.remove('hidden');
+                    // Trigger reflow for smooth transition
+                    void letterStage.offsetWidth;
+                    letterStage.classList.remove('opacity-0', 'translate-y-8');
+                    letterStage.classList.add('opacity-100', 'translate-y-0');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 450);
+            }, 1150);
+        }
+
+        function closeEnvelope() {
+            isEnvelopeOpen = false;
+            const envelope = document.getElementById('envelope');
+            const envelopeStage = document.getElementById('envelope-stage');
+            const letterStage = document.getElementById('letter-stage');
+
+            letterStage.classList.remove('opacity-100', 'translate-y-0');
+            letterStage.classList.add('opacity-0', 'translate-y-8');
+
+            setTimeout(() => {
+                letterStage.classList.add('hidden');
+                envelope.classList.remove('open');
+                envelopeStage.classList.remove('hidden', 'opacity-0', 'scale-95', 'pointer-events-none');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 500);
+        }
+
+        /* =========================================================================
+           3. EXTRA SURPRISES: VOUCHER REDEMPTION & ROSE COMPLIMENTS
+           ========================================================================= */
+        function redeemVoucher(cardElement, voucherName) {
+            const badge = cardElement.querySelector('.voucher-badge');
+            cardElement.classList.add('redeemed');
+            badge.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Đã nhận ❤️';
+            badge.className = 'voucher-badge px-2.5 py-1 rounded-full bg-rose-600 text-white text-xs font-bold shrink-0 shadow';
+
+            const rect = cardElement.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            triggerBurst(centerX, centerY, 22);
+            spawnFloatingWish(`🎉 Mẹ đã nhận: ${voucherName}!`, centerX, centerY);
+            playChimeNote(659.25); // E5 gentle chime
+        }
+
+        let roseCount = 1;
+        const sweetCompliments = [
+            "🌹 Mẹ là người phụ nữ đẹp nhất!",
+            "💖 Con yêu Mẹ nhiều lắm!",
+            "🌸 Chúc Mẹ mãi trẻ trung, yêu đời!",
+            "🌷 Cảm ơn Mẹ vì tất cả những hy sinh!",
+            "👑 Mẹ là nữ hoàng trong lòng con!",
+            "❤️ Chúc Mẹ 20/10 tràn ngập tiếng cười!",
+            "🌺 Mong Mẹ luôn mạnh khỏe và bình an!",
+            "💐 Ôm Mẹ một cái thật chặt!"
+        ];
+
+        function sendRoseShower(event) {
+            roseCount++;
+            document.getElementById('rose-counter').textContent = roseCount;
+
+            const x = event ? event.clientX : window.innerWidth / 2;
+            const y = event ? event.clientY : window.innerHeight / 2;
+
+            triggerBurst(x, y, 30);
+
+            const randomWish = sweetCompliments[Math.floor(Math.random() * sweetCompliments.length)];
+            spawnFloatingWish(randomWish, x, y - 20);
+            playChimeNote(523.25 + (roseCount % 5) * 60);
+        }
+
+        function spawnFloatingWish(text, x, y) {
+            const el = document.createElement('div');
+            el.className = 'floating-wish bg-white/95 text-rose-600 font-bold px-4 py-2 rounded-full shadow-xl border-2 border-pink-300 text-sm sm:text-base whitespace-nowrap';
+            el.textContent = text;
+
+            // Keep inside viewport bounds
+            const safeX = Math.min(Math.max(x - 110, 16), window.innerWidth - 260);
+            const safeY = Math.min(Math.max(y - 30, 60), window.innerHeight - 80);
+
+            el.style.left = `${safeX}px`;
+            el.style.top = `${safeY}px`;
+
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 3200);
+        }
+
+        /* =========================================================================
+           4. CUSTOMIZE LETTER & PHOTO UPLOAD MODAL
+           ========================================================================= */
+        function openEditModal() {
+            document.getElementById('edit-modal').classList.remove('hidden');
+            document.getElementById('edit-modal').classList.add('flex');
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.add('hidden');
+            document.getElementById('edit-modal').classList.remove('flex');
+        }
+
+        function saveCustomLetter() {
+            const title = document.getElementById('input-title').value.trim();
+            const body = document.getElementById('input-body').value.trim();
+            const sender = document.getElementById('input-sender').value.trim();
+
+            if (title) {
+                document.getElementById('letter-title-display').textContent = title;
+            }
+
+            if (body) {
+                const paragraphs = body.split(/\n\s*\n/);
+                const bodyContainer = document.getElementById('letter-body-display');
+                bodyContainer.innerHTML = '';
+                paragraphs.forEach(pText => {
+                    const p = document.createElement('p');
+                    p.textContent = pText.trim();
+                    bodyContainer.appendChild(p);
+                });
+            }
+
+            if (sender) {
+                document.getElementById('letter-sender-display').textContent = sender;
+            }
+
+            closeEditModal();
+            spawnFloatingWish("✨ Đã cập nhật nội dung bức thư!", window.innerWidth / 2, 100);
+        }
+
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgEl = document.getElementById('custom-mom-photo');
+                const svgEl = document.getElementById('default-mom-svg');
+                imgEl.src = e.target.result;
+                imgEl.classList.remove('hidden');
+                svgEl.classList.add('hidden');
+                spawnFloatingWish("📸 Đã cập nhật ảnh của Mẹ!", window.innerWidth / 2, 100);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetToDefaultIllustration() {
+            const imgEl = document.getElementById('custom-mom-photo');
+            const svgEl = document.getElementById('default-mom-svg');
+            imgEl.classList.add('hidden');
+            svgEl.classList.remove('hidden');
+            spawnFloatingWish("🎨 Đã chuyển về tranh vẽ dễ thương!", window.innerWidth / 2, 100);
+        }
+
+        /* =========================================================================
+           5. GENTLE WEB AUDIO API MUSIC BOX MELODY (NO EXTERNAL MP3 NEEDED)
+           ========================================================================= */
+        let audioCtx = null;
+        let isPlayingMusic = false;
+        let melodyInterval = null;
+        let noteIndex = 0;
+
+        // Warm Pentatonic Lullaby / Music Box Melody Notes (Frequencies in Hz)
+        const melodyNotes = [
+            523.25, 659.25, 783.99, 659.25, 880.00, 783.99, 659.25, 587.33,
+            523.25, 587.33, 659.25, 783.99, 659.25, 587.33, 523.25, 392.00,
+            440.00, 523.25, 659.25, 587.33, 523.25, 659.25, 783.99, 523.25
+        ];
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContextClass();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playChimeNote(freq) {
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.09, audioCtx.currentTime + 0.04);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.6);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 1.65);
+            } catch (e) {
+                // Ignore audio errors if blocked by browser policy
+            }
+        }
+
+        function startMusicBox() {
+            initAudio();
+            isPlayingMusic = true;
+            updateMusicButtonUI();
+
+            if (melodyInterval) clearInterval(melodyInterval);
+            playChimeNote(melodyNotes[noteIndex % melodyNotes.length]);
+            noteIndex++;
+
+            melodyInterval = setInterval(() => {
+                if (!isPlayingMusic) return;
+                const freq = melodyNotes[noteIndex % melodyNotes.length];
+                playChimeNote(freq);
+                noteIndex++;
+            }, 680);
+        }
+
+        function stopMusicBox() {
+            isPlayingMusic = false;
+            if (melodyInterval) {
+                clearInterval(melodyInterval);
+                melodyInterval = null;
+            }
+            updateMusicButtonUI();
+        }
+
+        function toggleMusic() {
+            if (isPlayingMusic) {
+                stopMusicBox();
+            } else {
+                startMusicBox();
+            }
+        }
+
+        function updateMusicButtonUI() {
+            const textEl = document.getElementById('music-text');
+            const iconEl = document.getElementById('music-icon');
+            if (isPlayingMusic) {
+                textEl.textContent = 'Nhạc nền: Bật';
+                iconEl.className = 'fa-solid fa-volume-high animate-pulse';
+            } else {
+                textEl.textContent = 'Nhạc nền: Tắt';
+                iconEl.className = 'fa-solid fa-volume-xmark';
+            }
+        }
+    </script>
+</body>
+</html>
