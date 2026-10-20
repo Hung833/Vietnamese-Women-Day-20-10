@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Vietnamese Women's Day 20/10 - Gửi Các Cô Gái Xinh Đẹp 💖</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Quicksand, Dancing Script, Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --pastel-pink: #ffe5ec;
+            --strawberry-pink: #ffb3c6;
+            --rose-pink: #ff6b8b;
+            --deep-rose: #d90429;
+            --cream-paper: #fffdf9;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: radial-gradient(circle at 50% 0%, #fff0f3 0%, #ffd6e0 45%, #ffb3c6 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-serif-vn {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Background Canvas for Petals, Hearts & Sparkles */
+        #petal-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 3D Envelope Styling */
+        .envelope-wrapper {
+            perspective: 1200px;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .envelope-wrapper:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .envelope {
+            position: relative;
+            width: 340px;
+            height: 235px;
+            background: #ff8fab;
+            border-radius: 0 0 18px 18px;
+            box-shadow: 0 22px 45px rgba(217, 4, 41, 0.22), 0 0 0 2px rgba(255, 255, 255, 0.7) inset;
+            cursor: pointer;
+            transform-style: preserve-3d;
+        }
+
+        @media (min-width: 640px) {
+            .envelope {
+                width: 430px;
+                height: 285px;
+            }
+        }
+
+        /* Top Flap */
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffb3c6 0%, #fb6f92 100%);
+            clip-path: polygon(0 0, 100% 0, 50% 58%);
+            transform-origin: top;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s 0.4s;
+            z-index: 30;
+            filter: drop-shadow(0 5px 8px rgba(164, 19, 60, 0.16));
+        }
+
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+            z-index: 5;
+        }
+
+        /* Front Pocket */
+        .pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #ffc2d1 0%, #ffb3c6 100%);
+            clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%);
+            border-radius: 0 0 18px 18px;
+            z-index: 20;
+        }
+
+        .pocket-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #ffe5ec 0%, #ffc2d1 100%);
+            clip-path: polygon(0 100%, 50% 47%, 100% 100%);
+            border-radius: 0 0 18px 18px;
+            z-index: 21;
+            filter: drop-shadow(0 -3px 6px rgba(201, 24, 74, 0.1));
+        }
+
+        /* Inner Letter Preview */
+        .letter-preview {
+            position: absolute;
+            bottom: 12px;
+            left: 5%;
+            width: 90%;
+            height: 88%;
+            background: var(--cream-paper);
+            border-radius: 14px;
+            z-index: 10;
+            transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 2px dashed #ffb3c6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 16px;
+        }
+
+        .envelope.open .letter-preview {
+            transform: translateY(-135px) scale(1.03);
+        }
+
+        /* Sparkling Heart Wax Seal */
+        .wax-seal {
+            position: absolute;
+            top: 53%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 68px;
+            height: 68px;
+            background: radial-gradient(circle at 30% 30%, #ff758f, #ff4d6d 65%, #c9184a 100%);
+            border-radius: 50%;
+            z-index: 35;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 18px rgba(201, 24, 74, 0.45), inset 0 2px 5px rgba(255, 255, 255, 0.6), 0 0 0 5px rgba(255, 194, 209, 0.5);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            animation: pulse-seal 2s infinite;
+        }
+
+        .envelope.open .wax-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.3);
+            pointer-events: none;
+        }
+
+        @keyframes pulse-seal {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.09); }
+        }
+
+        /* Letter Paper Texture */
+        .letter-paper {
+            background-color: var(--cream-paper);
+            background-image: 
+                radial-gradient(#ffd6e0 1.2px, transparent 1.2px), 
+                radial-gradient(#ffe5ec 1.2px, var(--cream-paper) 1.2px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+            box-shadow: 0 25px 65px rgba(164, 19, 60, 0.25), 0 0 0 2px rgba(255, 179, 198, 0.7);
+            position: relative;
+        }
+
+        /* Floating Animation for Portrait */
+        .girl-portrait-container {
+            animation: float-girl 3.8s ease-in-out infinite;
+        }
+
+        @keyframes float-girl {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-7px) rotate(1deg); }
+        }
+
+        /* Blind Box / Lucky Charm Card */
+        .blind-box-card {
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe5ec 100%);
+            border: 2px dashed #ff8fab;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .blind-box-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(251, 111, 146, 0.22);
+            border-color: #ff4d6d;
+        }
+
+        .blind-box-card.opened {
+            background: linear-gradient(135deg, #ffffff 0%, #fff0f3 100%);
+            border-style: solid;
+            border-color: #fb6f92;
+        }
+
+        /* Floating Compliment Toast */
+        .floating-toast {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            animation: float-up-toast 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes float-up-toast {
+            0% { opacity: 0; transform: translateY(20px) scale(0.7); }
+            15% { opacity: 1; transform: translateY(0px) scale(1.06); }
+            30% { transform: translateY(-10px) scale(1); }
+            80% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-85px) scale(0.95); }
+        }
+
+        /* Mode Switcher Active Tab */
+        .mode-tab.active {
+            background: linear-gradient(to right, #ff4d6d, #fb6f92);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 77, 109, 0.35);
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body class="relative flex flex-col items-center justify-center min-h-screen py-8 px-4">
+
+    <!-- Background Floating Petals, Hearts & Sparkles Canvas -->
+    <canvas id="petal-canvas"></canvas>
+
+    <!-- Top Floating Controls Bar -->
+    <div class="fixed top-4 right-4 z-50 flex items-center gap-2 sm:gap-2.5">
+        <!-- Music Button -->
+        <button id="music-btn" onclick="toggleMusic()" class="flex items-center gap-2 bg-white/90 hover:bg-white text-pink-600 px-3.5 py-2 rounded-full shadow-lg border border-pink-200 transition-all hover:scale-105 active:scale-95 text-xs sm:text-sm font-bold">
+            <i id="music-icon" class="fa-solid fa-music"></i>
+            <span id="music-text" class="hidden sm:inline">Nhạc: Tắt</span>
+        </button>
+
+        <!-- Customize & Share Link Button -->
+        <button onclick="openEditModal()" class="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-3.5 py-2 rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 text-xs sm:text-sm font-bold">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Đổi lời chúc / Tạo link gửi riêng</span>
+        </button>
+    </div>
+
+    <!-- ==================== STAGE 1: CLOSED ENVELOPE VIEW ==================== -->
+    <div id="envelope-stage" class="relative z-10 flex flex-col items-center justify-center w-full max-w-lg mx-auto my-auto transition-all duration-700">
+        
+        <!-- Top Greeting Pill -->
+        <div class="mb-5 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/85 backdrop-blur-sm text-pink-600 text-xs sm:text-sm font-bold shadow-sm border border-pink-200 mb-3">
+                <span>✨</span> Happy Vietnamese Women's Day 20/10 <span>✨</span>
+            </div>
+            <h1 class="font-handwriting text-4xl sm:text-5xl text-rose-700 drop-shadow-sm px-2">
+                Món Quà Nhỏ Gửi Xinh Đẹp 🌷
+            </h1>
+        </div>
+
+        <!-- Decorative Roses & Sparkles Around Envelope -->
+        <div class="relative flex items-center justify-center my-4">
+            
+            <!-- Left Cute Rose & Bow SVG -->
+            <div class="absolute -left-6 -bottom-5 z-30 pointer-events-none transform -rotate-12">
+                <svg width="88" height="88" viewBox="0 0 100 100">
+                    <path d="M25,70 Q5,65 12,45 Q30,50 25,70 Z" fill="#74c69d" />
+                    <path d="M55,85 Q75,95 85,75 Q65,65 55,85 Z" fill="#52b788" />
+                    <circle cx="45" cy="55" r="23" fill="#ff4d6d" />
+                    <path d="M30,50 C35,35 55,35 60,50 C65,65 40,75 30,60 C25,52 38,42 48,48 C55,53 45,62 40,56" fill="none" stroke="#fff0f3" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="22" cy="34" r="12" fill="#ff8fab" />
+                    <path d="M16,32 Q22,25 28,35" fill="none" stroke="#fff0f3" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- Right Cute Rose & Sparkle SVG -->
+            <div class="absolute -right-6 -top-6 z-30 pointer-events-none transform rotate-12">
+                <svg width="88" height="88" viewBox="0 0 100 100">
+                    <path d="M70,35 Q90,25 85,45 Q75,50 70,35 Z" fill="#74c69d" />
+                    <circle cx="52" cy="45" r="22" fill="#fb6f92" />
+                    <path d="M38,42 C42,28 62,28 65,42 C68,55 45,65 38,52 C34,44 45,36 54,42 C60,46 50,54 46,48" fill="none" stroke="#ffe5ec" stroke-width="3" stroke-linecap="round"/>
+                    <!-- 4-point Sparkle Star -->
+                    <path d="M25,10 Q25,25 10,25 Q25,25 25,40 Q25,25 40,25 Q25,25 25,10 Z" fill="#ffd166" />
+                </svg>
+            </div>
+
+            <!-- Interactive 3D Envelope -->
+            <div class="envelope-wrapper" onclick="openEnvelope()">
+                <div id="envelope" class="envelope">
+                    <!-- Top Flap -->
+                    <div class="flap"></div>
+
+                    <!-- Inner Letter Preview -->
+                    <div class="letter-preview">
+                        <div class="text-pink-500 text-xs font-bold tracking-widest uppercase mb-1">✨ 20 • 10 SPECIAL ✨</div>
+                        <div id="preview-recipient" class="font-handwriting text-2xl sm:text-3xl text-rose-600 font-bold text-center px-3 line-clamp-1">
+                            Gửi Các Cô Gái Xinh Đẹp 💖
+                        </div>
+                        <div class="mt-2 flex gap-1.5 text-pink-400 text-sm">
+                            <span>🌹</span><span>💖</span><span>✨</span><span>💖</span><span>🌹</span>
+                        </div>
+                    </div>
+
+                    <!-- Front Pocket -->
+                    <div class="pocket"></div>
+                    <div class="pocket-bottom"></div>
+
+                    <!-- Stamp Top Right on Front -->
+                    <div class="absolute top-3 right-3 z-25 bg-white/90 px-2.5 py-1 rounded-lg border border-dashed border-pink-400 transform rotate-6 pointer-events-none shadow-sm">
+                        <span class="text-[11px] font-bold text-rose-600">20/10 LOVE 💌</span>
+                    </div>
+
+                    <!-- Envelope Recipient Label -->
+                    <div class="absolute bottom-4 right-5 z-25 pointer-events-none text-right">
+                        <p class="font-handwriting text-xl sm:text-2xl text-rose-800">
+                            To: <span id="envelope-to-name" class="font-bold underline decoration-pink-400">Các Cô Gái Xinh Đẹp</span> ✨
+                        </p>
+                    </div>
+
+                    <!-- Heart Wax Seal -->
+                    <div class="wax-seal" title="Nhấn để mở thư">
+                        <i class="fa-solid fa-heart text-white text-xl drop-shadow"></i>
+                        <span class="text-[9px] font-bold text-white tracking-wider uppercase mt-0.5">OPEN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to action button -->
+        <div class="mt-8 text-center">
+            <button onclick="openEnvelope()" class="group relative inline-flex items-center gap-3 bg-gradient-to-r from-pink-500 via-rose-500 to-pink-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold px-7 py-3.5 rounded-full shadow-xl shadow-pink-500/30 transition-all hover:scale-105 active:scale-95">
+                <span>Chạm vào phong bì để khui quà 20/10 nhé!</span>
+                <span class="inline-block group-hover:rotate-12 group-hover:scale-125 transition-transform">🎀</span>
+            </button>
+            <p class="text-xs text-rose-800/75 mt-3 font-medium">
+                <i class="fa-solid fa-sparkles mr-1"></i> Mở thư để nhận lời chúc & bốc quẻ may mắn 20/10
+            </p>
+        </div>
+    </div>
+
+    <!-- ==================== STAGE 2: OPENED FULL LETTER VIEW ==================== -->
+    <div id="letter-stage" class="hidden relative z-20 w-full max-w-3xl mx-auto my-4 transition-all duration-700 opacity-0 translate-y-8">
+        
+        <!-- Quick Greeting Mode Selector Bar (For easy switching) -->
+        <div class="mb-4 bg-white/80 backdrop-blur-md p-2 rounded-2xl shadow-md border border-pink-200 flex flex-wrap items-center justify-center gap-2">
+            <span class="text-xs font-bold text-rose-700 px-2"><i class="fa-solid fa-sliders mr-1"></i>Chế độ lời chúc:</span>
+            <button onclick="switchPresetMode('group')" id="tab-group" class="mode-tab active text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-xl border border-pink-200 text-pink-700 transition-all">
+                👯‍♀️ Hội Chị Em / Các Bạn Nữ
+            </button>
+            <button onclick="switchPresetMode('bestie')" id="tab-bestie" class="mode-tab text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-xl border border-pink-200 text-pink-700 transition-all">
+                🧋 Bạn Thân (Bestie)
+            </button>
+            <button onclick="switchPresetMode('special')" id="tab-special" class="mode-tab text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-xl border border-pink-200 text-pink-700 transition-all">
+                💘 Cô Gái Đặc Biệt
+            </button>
+        </div>
+
+        <!-- Main Letter Paper -->
+        <div class="letter-paper rounded-3xl p-4 sm:p-8 md:p-10">
+            <div class="border-2 border-pink-300 rounded-2xl p-5 sm:p-8 md:p-10 bg-white/65 backdrop-blur-sm relative">
+                
+                <!-- Corner Ornaments -->
+                <div class="absolute top-3 left-3 text-2xl select-none pointer-events-none">🌷</div>
+                <div class="absolute top-3 right-3 text-2xl select-none pointer-events-none">🌷</div>
+                <div class="absolute bottom-3 left-3 text-2xl select-none pointer-events-none">🎀</div>
+                <div class="absolute bottom-3 right-3 text-2xl select-none pointer-events-none">🎀</div>
+
+                <!-- Header Badge & Cute Chibi Girl Illustration -->
+                <div class="flex flex-col items-center text-center mb-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-pink-100 text-rose-600 text-xs sm:text-sm font-bold tracking-wide uppercase mb-4 border border-pink-200">
+                        <span>✨</span> Happy Women's Day • 20 Tháng 10 <span>✨</span>
+                    </div>
+
+                    <!-- ==================== CUTE ANIME/CHIBI YOUNG GIRL PORTRAIT ==================== -->
+                    <div class="girl-portrait-container relative">
+                        <div class="w-44 h-44 sm:w-52 sm:h-52 rounded-full bg-gradient-to-b from-pink-100 via-rose-50 to-pink-200 p-2 shadow-xl border-4 border-white ring-4 ring-pink-300/70 flex items-center justify-center overflow-hidden relative">
+                            
+                            <!-- Custom Photo (if user uploads) -->
+                            <img id="custom-girl-photo" src="" alt="Ảnh cô gái xinh đẹp" class="hidden w-full h-full object-cover rounded-full" />
+
+                            <!-- Default Cute Hand-Crafted Anime/Chibi Young Girl SVG -->
+                            <svg id="default-girl-svg" viewBox="0 0 240 240" class="w-full h-full">
+                                <defs>
+                                    <radialGradient id="girlBg" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="#fff0f3" />
+                                        <stop offset="100%" stop-color="#ffc2d1" />
+                                    </radialGradient>
+                                    <linearGradient id="girlHair" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#5e3a32" />
+                                        <stop offset="100%" stop-color="#361f1a" />
+                                    </linearGradient>
+                                    <linearGradient id="dressGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ff8fab" />
+                                        <stop offset="100%" stop-color="#fb6f92" />
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Soft Pastel Background -->
+                                <circle cx="120" cy="120" r="115" fill="url(#girlBg)" />
+
+                                <!-- Floating Sparkles & Hearts in Background -->
+                                <path d="M40,55 Q40,65 30,65 Q40,65 40,75 Q40,65 50,65 Q40,65 40,55 Z" fill="#ffd166" />
+                                <path d="M200,50 Q200,58 192,58 Q200,58 200,66 Q200,58 208,58 Q200,58 200,50 Z" fill="#ffd166" />
+                                <path d="M48,105 C48,101 42,99 42,103 C42,99 36,101 36,105 C36,110 42,114 42,114 C42,114 48,110 48,105 Z" fill="#ff4d6d" opacity="0.75" />
+                                <path d="M206,108 C206,104 200,102 200,106 C200,102 194,104 194,108 C194,113 200,117 200,117 C200,117 206,113 206,108 Z" fill="#ff4d6d" opacity="0.75" />
+
+                                <!-- Long Flowing Wavy Chestnut Hair (Back) -->
+                                <path d="M58,95 C42,140 48,195 65,225 L175,225 C192,195 198,140 182,95 C175,60 150,45 120,45 C90,45 65,60 58,95 Z" fill="url(#girlHair)" />
+
+                                <!-- Cute Pastel Pink Ribbon Bow on Top Hair -->
+                                <path d="M88,48 C72,34 65,55 84,58 Z" fill="#ff4d6d" />
+                                <path d="M92,48 C108,34 115,55 96,58 Z" fill="#ff4d6d" />
+                                <circle cx="90" cy="52" r="5.5" fill="#ffb3c6" />
+
+                                <!-- Cute Puff-Sleeve Pastel Dress & Neck -->
+                                <path d="M68,235 C72,186 94,174 120,174 C146,174 168,186 172,235 Z" fill="url(#dressGrad)" />
+                                <circle cx="76" cy="198" r="16" fill="#ffb3c6" />
+                                <circle cx="164" cy="198" r="16" fill="#ffb3c6" />
+                                <!-- White Lace Collar -->
+                                <path d="M98,172 Q110,188 120,178 Q130,188 142,172" fill="#ffffff" stroke="#ffc2d1" stroke-width="2" />
+                                <!-- Neck -->
+                                <rect x="110" y="152" width="20" height="22" rx="9" fill="#fff1e6" />
+
+                                <!-- Cute Face Base -->
+                                <path d="M74,108 C74,74 94,62 120,62 C146,62 166,74 166,108 C166,142 145,162 120,162 C95,162 74,142 74,108 Z" fill="#fff1e6" />
+
+                                <!-- Rosy Blushing Cheeks with Little Highlight Dots -->
+                                <ellipse cx="89" cy="127" rx="12" ry="7" fill="#ff758f" opacity="0.55" />
+                                <ellipse cx="151" cy="127" rx="12" ry="7" fill="#ff758f" opacity="0.55" />
+                                <circle cx="86" cy="126" r="1.8" fill="#ffffff" opacity="0.8" />
+                                <circle cx="154" cy="126" r="1.8" fill="#ffffff" opacity="0.8" />
+
+                                <!-- Big Sparkling Anime Eyes -->
+                                <!-- Left Eye -->
+                                <ellipse cx="97" cy="112" rx="9.5" ry="11" fill="#361f1a" />
+                                <circle cx="94" cy="108" r="4" fill="#ffffff" />
+                                <circle cx="101" cy="116" r="2" fill="#ffffff" />
+                                <path d="M85,103 Q97,96 108,104" fill="none" stroke="#361f1a" stroke-width="3" stroke-linecap="round" />
+                                <!-- Right Eye -->
+                                <ellipse cx="143" cy="112" rx="9.5" ry="11" fill="#361f1a" />
+                                <circle cx="140" cy="108" r="4" fill="#ffffff" />
+                                <circle cx="147" cy="116" r="2" fill="#ffffff" />
+                                <path d="M132,104 Q143,96 155,103" fill="none" stroke="#361f1a" stroke-width="3" stroke-linecap="round" />
+
+                                <!-- Soft Eyebrows -->
+                                <path d="M87,94 Q97,90 105,93" fill="none" stroke="#5e3a32" stroke-width="2" stroke-linecap="round" />
+                                <path d="M135,93 Q143,90 153,94" fill="none" stroke="#5e3a32" stroke-width="2" stroke-linecap="round" />
+
+                                <!-- Tiny Button Nose -->
+                                <path d="M119,121 Q121,124 118,126" fill="none" stroke="#e29578" stroke-width="2" stroke-linecap="round" />
+
+                                <!-- Sweet Happy Smile -->
+                                <path d="M108,136 Q120,147 132,136" fill="none" stroke="#e63946" stroke-width="2.8" stroke-linecap="round" />
+                                <path d="M112,138 Q120,145 128,138 Z" fill="#ff758f" opacity="0.5" />
+
+                                <!-- Cute Airy Fringe / Bangs -->
+                                <path d="M68,105 C70,68 95,52 120,52 C145,52 170,68 172,105 C163,82 148,75 138,94 C132,76 122,72 115,94 C105,74 84,80 68,105 Z" fill="url(#girlHair)" />
+
+                                <!-- Gorgeous Rose Bouquet Held in Front -->
+                                <g transform="translate(0, 6)">
+                                    <path d="M84,194 L120,240 L156,194 L146,178 L94,178 Z" fill="#fff0f3" stroke="#ffb3c6" stroke-width="2" />
+                                    <!-- Green Leaves -->
+                                    <ellipse cx="95" cy="182" rx="10" ry="5" transform="rotate(-25 95 182)" fill="#74c69d" />
+                                    <ellipse cx="145" cy="182" rx="10" ry="5" transform="rotate(25 145 182)" fill="#74c69d" />
+                                    <!-- Pastel & Deep Roses -->
+                                    <circle cx="102" cy="185" r="13" fill="#ff8fab" />
+                                    <path d="M96,183 Q102,177 108,184 Q102,191 98,185" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" />
+                                    <circle cx="138" cy="185" r="13" fill="#ff8fab" />
+                                    <path d="M132,183 Q138,177 144,184 Q138,191 134,185" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" />
+                                    <circle cx="120" cy="181" r="15" fill="#ff4d6d" />
+                                    <path d="M112,179 C115,171 125,171 128,179 C130,187 116,191 113,183 C111,178 118,175 122,179" fill="none" stroke="#ffe5ec" stroke-width="2" stroke-linecap="round" />
+                                    <!-- Ribbon Bow on Bouquet -->
+                                    <path d="M108,210 L132,210 L120,218 Z" fill="#ff4d6d" />
+                                    <circle cx="120" cy="211" r="4.5" fill="#ffd166" />
+                                </g>
+                            </svg>
+                        </div>
+
+                        <!-- Cute Crown Badge Under Avatar -->
+                        <div class="-mt-4 relative z-10 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-5 py-1 rounded-full shadow-md text-xs sm:text-sm font-bold inline-flex items-center gap-1.5">
+                            <span>👑</span> <span id="badge-girl-title">Nữ Thần Tháng 10</span> <span>👑</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== LETTER GREETING & BODY ==================== -->
+                <div class="max-w-2xl mx-auto mt-6 text-gray-800 space-y-4 leading-relaxed text-base sm:text-lg">
+                    
+                    <h2 id="letter-title-display" class="font-handwriting text-3xl sm:text-4xl text-rose-600 font-bold text-center sm:text-left mb-4">
+                        Gửi các cô gái xinh đẹp và rạng rỡ nhất! 💖
+                    </h2>
+
+                    <div id="letter-body-display" class="space-y-4 text-gray-700 font-medium leading-8 text-justify sm:text-left">
+                        <p>
+                            Nhân ngày Phụ nữ Việt Nam <strong>20/10</strong>, xin gửi ngàn lời chúc ngọt ngào và tốt đẹp nhất đến một nửa dịu dàng, xinh đẹp của thế giới!
+                        </p>
+                        <p>
+                            Cảm ơn các bạn vì đã luôn mang đến những nụ cười tỏa nắng, nguồn năng lượng tích cực và biến mỗi ngày đi học, đi làm trở nên rực rỡ sắc màu hơn rất nhiều.
+                        </p>
+                        <p>
+                            Chúc các cô gái của chúng ta ngày 20/10 và cả 365 ngày trong năm luôn <strong>xinh đẹp hết nấc, nhan sắc thăng hạng vèo vèo, tiền về đầy ví, trà sữa full topping không lo tăng cân</strong> và mọi deadline đều trôi qua nhẹ tựa lông hồng!
+                        </p>
+                        <p>
+                            Hãy luôn tự tin, yêu thương bản thân và tỏa sáng theo cách riêng tuyệt vời nhất của mình nhé! ✨🌷
+                        </p>
+                    </div>
+
+                    <!-- Highlight Quote Box -->
+                    <div id="letter-quote-display" class="my-6 p-4 sm:p-5 rounded-2xl bg-pink-50/90 border-l-4 border-rose-500 text-rose-800 italic text-center font-serif-vn">
+                        "Chúc các cô gái luôn rực rỡ như hoa hướng dương, ngọt ngào như hoa hồng và hạnh phúc trọn vẹn mỗi ngày!" 🌹✨
+                    </div>
+
+                    <!-- Signature -->
+                    <div class="pt-2 text-right">
+                        <p class="text-sm text-gray-500 font-medium">Ngày 20 tháng 10 ngập tràn niềm vui,</p>
+                        <p id="letter-sender-display" class="font-handwriting text-3xl sm:text-4xl text-rose-600 font-bold mt-1">
+                            Gửi ngàn yêu thương 💌
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="my-8 flex items-center justify-center gap-4">
+                    <div class="h-px bg-pink-200 flex-1"></div>
+                    <span class="text-pink-400 text-xl">✨ 🌹 💖 🌹 ✨</span>
+                    <div class="h-px bg-pink-200 flex-1"></div>
+                </div>
+
+                <!-- ==================== INTERACTIVE SURPRISE 1: LUCKY GACHA / BLIND BOX 20/10 ==================== -->
+                <div class="mt-6">
+                    <div class="text-center mb-5">
+                        <h3 class="font-handwriting text-3xl text-rose-600 font-bold">
+                            🎁 Góc Khui "Túi Mù" Vận May 20/10 🎁
+                        </h3>
+                        <p class="text-sm text-gray-600 mt-1">
+                            Hãy chạm vào các hộp quà bí mật bên dưới để nhận "Vía May Mắn" đặc biệt trong ngày 20/10 nhé! ✨
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <!-- Blind Box 1 -->
+                        <div onclick="openBlindBox(this, 0)" class="blind-box-card rounded-2xl p-4 cursor-pointer flex items-center gap-3.5">
+                            <div class="box-icon w-12 h-12 rounded-xl bg-gradient-to-br from-pink-400 to-rose-500 text-white flex items-center justify-center text-2xl shrink-0 shadow">
+                                🎀
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="box-title font-bold text-rose-800 text-base">Túi Mù Nhan Sắc #1</h4>
+                                <p class="box-desc text-xs text-gray-600">Chạm vào để khui lời tiên tri nhan sắc của bạn!</p>
+                            </div>
+                            <span class="box-badge px-2.5 py-1 rounded-full bg-white text-pink-600 border border-pink-300 text-xs font-bold shrink-0">
+                                Khui ngay
+                            </span>
+                        </div>
+
+                        <!-- Blind Box 2 -->
+                        <div onclick="openBlindBox(this, 1)" class="blind-box-card rounded-2xl p-4 cursor-pointer flex items-center gap-3.5">
+                            <div class="box-icon w-12 h-12 rounded-xl bg-gradient-to-br from-rose-400 to-pink-600 text-white flex items-center justify-center text-2xl shrink-0 shadow">
+                                💎
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="box-title font-bold text-rose-800 text-base">Túi Mù Tài Lộc #2</h4>
+                                <p class="box-desc text-xs text-gray-600">Chạm vào để nhận vía tài lộc & ăn uống thỏa thích!</p>
+                            </div>
+                            <span class="box-badge px-2.5 py-1 rounded-full bg-white text-pink-600 border border-pink-300 text-xs font-bold shrink-0">
+                                Khui ngay
+                            </span>
+                        </div>
+
+                        <!-- Blind Box 3 -->
+                        <div onclick="openBlindBox(this, 2)" class="blind-box-card rounded-2xl p-4 cursor-pointer flex items-center gap-3.5">
+                            <div class="box-icon w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-500 text-white flex items-center justify-center text-2xl shrink-0 shadow">
+                                🌟
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="box-title font-bold text-rose-800 text-base">Túi Mù Học Tập & Sự Nghiệp #3</h4>
+                                <p class="box-desc text-xs text-gray-600">Chạm vào để xem vận may công việc, điểm số!</p>
+                            </div>
+                            <span class="box-badge px-2.5 py-1 rounded-full bg-white text-pink-600 border border-pink-300 text-xs font-bold shrink-0">
+                                Khui ngay
+                            </span>
+                        </div>
+
+                        <!-- Blind Box 4 -->
+                        <div onclick="openBlindBox(this, 3)" class="blind-box-card rounded-2xl p-4 cursor-pointer flex items-center gap-3.5">
+                            <div class="box-icon w-12 h-12 rounded-xl bg-gradient-to-br from-rose-500 to-red-500 text-white flex items-center justify-center text-2xl shrink-0 shadow">
+                                💘
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="box-title font-bold text-rose-800 text-base">Túi Mù Tình Duyên & Niềm Vui #4</h4>
+                                <p class="box-desc text-xs text-gray-600">Chạm vào để nhận thông điệp yêu thương bất ngờ!</p>
+                            </div>
+                            <span class="box-badge px-2.5 py-1 rounded-full bg-white text-pink-600 border border-pink-300 text-xs font-bold shrink-0">
+                                Khui ngay
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== INTERACTIVE SURPRISE 2: COMPLIMENT SHOWER ==================== -->
+                <div class="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                    <button onclick="sendComplimentShower(event)" class="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-gradient-to-r from-rose-500 via-pink-500 to-rose-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold px-6 py-3.5 rounded-full shadow-lg shadow-rose-400/40 transition-all hover:scale-105 active:scale-95">
+                        <span class="text-xl">💐</span>
+                        <span>Bấm Nhận Hoa & Mưa Lời Khen (<span id="flower-counter">10</span>/10 điểm)</span>
+                    </button>
+
+                    <button onclick="closeEnvelope()" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-pink-100 hover:bg-pink-200 text-pink-800 font-bold px-5 py-3.5 rounded-full transition-all hover:scale-105 active:scale-95">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Đóng Phong Bì Lại</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL: CUSTOMIZE LETTER, PHOTO & SHARE LINK ==================== -->
+    <div id="edit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border-2 border-pink-200 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-pink-100 pb-3 mb-4">
+                <h3 class="font-handwriting text-3xl text-rose-600 font-bold">✨ Tùy Chỉnh & Tạo Link Gửi Bạn Nữ</h3>
+                <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-600 text-xl px-2">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <!-- Quick Preset Mode Buttons -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1.5">Chọn nhanh mẫu lời chúc:</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="applyModalPreset('group')" class="p-2 rounded-xl bg-pink-50 hover:bg-pink-100 text-pink-700 font-bold border border-pink-200 text-xs">
+                            👯‍♀️ Hội Chị Em
+                        </button>
+                        <button onclick="applyModalPreset('bestie')" class="p-2 rounded-xl bg-pink-50 hover:bg-pink-100 text-pink-700 font-bold border border-pink-200 text-xs">
+                            🧋 Bạn Thân
+                        </button>
+                        <button onclick="applyModalPreset('special')" class="p-2 rounded-xl bg-pink-50 hover:bg-pink-100 text-pink-700 font-bold border border-pink-200 text-xs">
+                            💘 Crush / Người Ấy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recipient Name on Envelope -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">Tên người nhận (hiện ngoài phong bì & đầu thư):</label>
+                    <input type="text" id="input-recipient" class="w-full px-3.5 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400" placeholder="VD: Các bạn nữ lớp 12A / Bạn Linh xinh đẹp..." value="Các Cô Gái Xinh Đẹp">
+                </div>
+
+                <!-- Photo Upload -->
+                <div class="p-3.5 rounded-2xl bg-pink-50 border border-pink-200">
+                    <label class="block font-bold text-pink-800 mb-1">
+                        <i class="fa-solid fa-camera-retro mr-1"></i> Ảnh đại diện trong thư:
+                    </label>
+                    <p class="text-xs text-gray-600 mb-2">
+                        Bạn có thể giữ tranh vẽ Chibi dễ thương hoặc tải ảnh thật của bạn nữ / tập thể nữ lên nhé!
+                    </p>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <label class="cursor-pointer bg-white hover:bg-pink-100 text-pink-700 font-semibold px-3 py-1.5 rounded-xl border border-pink-300 shadow-sm transition text-xs">
+                            <i class="fa-solid fa-upload mr-1"></i> Tải ảnh từ máy
+                            <input type="file" id="photo-upload" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+                        </label>
+                        <button onclick="resetToDefaultIllustration()" class="bg-rose-100 hover:bg-rose-200 text-rose-700 font-semibold px-3 py-1.5 rounded-xl transition text-xs">
+                            Dùng lại tranh vẽ Chibi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Title Input -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">Tiêu đề mở đầu bức thư:</label>
+                    <input type="text" id="input-title" class="w-full px-3.5 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400" value="Gửi các cô gái xinh đẹp và rạng rỡ nhất! 💖">
+                </div>
+
+                <!-- Content Input -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">Nội dung lời chúc (cách đoạn bằng dòng trống):</label>
+                    <textarea id="input-body" rows="5" class="w-full px-3.5 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400 leading-relaxed">Nhân ngày Phụ nữ Việt Nam 20/10, xin gửi ngàn lời chúc ngọt ngào và tốt đẹp nhất đến một nửa dịu dàng, xinh đẹp của thế giới!
+
+Cảm ơn các bạn vì đã luôn mang đến những nụ cười tỏa nắng, nguồn năng lượng tích cực và biến mỗi ngày đi học, đi làm trở nên rực rỡ sắc màu hơn rất nhiều.
+
+Chúc các cô gái của chúng ta ngày 20/10 và cả 365 ngày trong năm luôn xinh đẹp hết nấc, nhan sắc thăng hạng vèo vèo, tiền về đầy ví, trà sữa full topping không lo tăng cân và mọi deadline đều trôi qua nhẹ tựa lông hồng!</textarea>
+                </div>
+
+                <!-- Sender Signature Input -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">Chữ ký người gửi:</label>
+                    <input type="text" id="input-sender" class="w-full px-3.5 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400" value="Gửi ngàn yêu thương 💌">
+                </div>
+
+                <!-- Copy Shareable Link Section -->
+                <div class="p-3.5 rounded-2xl bg-rose-50 border border-rose-200">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-rose-800"><i class="fa-solid fa-link mr-1"></i>Sao chép link gửi riêng theo tên đã nhập:</span>
+                        <button onclick="copyPersonalizedLink()" class="bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow transition">
+                            Copy Link  🔗
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end gap-3">
+                <button onclick="closeEditModal()" class="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold">
+                    Đóng
+                </button>
+                <button onclick="saveCustomLetter()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold shadow-md">
+                    Lưu Áp Dụng 💖
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* =========================================================================
+           1. PRESET GREETING MODES FOR GIRLS (GROUP, BESTIE, SPECIAL CRUSH)
+           ========================================================================= */
+        const letterPresets = {
+            group: {
+                recipient: "Các Cô Gái Xinh Đẹp",
+                badge: "Nữ Thần Tháng 10",
+                title: "Gửi các cô gái xinh đẹp và rạng rỡ nhất! 💖",
+                body: `Nhân ngày Phụ nữ Việt Nam 20/10, xin gửi ngàn lời chúc ngọt ngào và tốt đẹp nhất đến một nửa dịu dàng, xinh đẹp của thế giới!
+
+Cảm ơn các bạn vì đã luôn mang đến những nụ cười tỏa nắng, nguồn năng lượng tích cực và biến mỗi ngày đi học, đi làm trở nên rực rỡ sắc màu hơn rất nhiều.
+
+Chúc các cô gái của chúng ta ngày 20/10 và cả 365 ngày trong năm luôn xinh đẹp hết nấc, nhan sắc thăng hạng vèo vèo, tiền về đầy ví, trà sữa full topping không lo tăng cân và mọi deadline đều trôi qua nhẹ tựa lông hồng!
+
+Hãy luôn tự tin, yêu thương bản thân và tỏa sáng theo cách riêng tuyệt vời nhất của mình nhé! ✨🌷`,
+                quote: `"Chúc các cô gái luôn rực rỡ như hoa hướng dương, ngọt ngào như hoa hồng và hạnh phúc trọn vẹn mỗi ngày!" 🌹✨`,
+                sender: "Từ hội con trai / Người bạn quý mến 💌"
+            },
+            bestie: {
+                recipient: "Cô Bạn Thân Xinh Đẹp",
+                badge: "Bestie 10 Điểm",
+                title: "Chúc mừng 20/10 cô bạn thân tuyệt vời của tui! 🧋💖",
+                body: `Nhân ngày 20/10, chúc cô bạn của tui ngày càng xinh đẹp lộng lẫy, da đẹp dáng xinh, chụp góc nào cũng ăn ảnh triệu like!
+
+Cảm ơn bà vì đã luôn đồng hành, lắng nghe mọi câu chuyện trên trời dưới biển và cùng tui tạo nên biết bao kỷ niệm đáng nhớ.
+
+Chúc bà tuổi mới, tháng mới bớt thức khuya, bớt "báo", tiền tiêu rủng rỉnh, ăn ngon mặc đẹp đi du lịch khắp nơi và sớm tìm được chân ái (hoặc ngày càng hạnh phúc viên mãn) nhé! Mãi là bạn tốt nha! 🥂🌷`,
+                quote: `"Tình bạn của tụi mình cũng rực rỡ như những đóa hoa – chúc bà luôn vui vẻ và cười tươi mỗi ngày!" 🌸✨`,
+                sender: "Bạn thân của bà ❤️"
+            },
+            special: {
+                recipient: "Cô Gái Đặc Biệt",
+                badge: "Công Chúa Nhỏ",
+                title: "Gửi một cô gái vô cùng đặc biệt nhân ngày 20/10! 🌹💘",
+                body: `Hôm nay là ngày 20/10 – ngày tôn vinh những người phụ nữ tuyệt vời, và người đầu tiên mình nghĩ đến chính là bạn.
+
+Cảm ơn bạn vì nụ cười dịu dàng và sự ấm áp mà bạn luôn mang theo. Mỗi khi nhìn thấy bạn cười, dường như mọi mệt mỏi trong ngày đều tan biến hết.
+
+Chúc cô gái ngày hôm nay và tất cả những ngày sau nữa luôn bình yên, ngập tràn niềm vui, được yêu thương chiều chuộng và luôn giữ mãi ánh mắt lấp lánh rạng ngời như bây giờ nhé! 💖✨`,
+                quote: `"Giữa hàng ngàn đóa hoa rực rỡ của tháng 10, nụ cười của bạn vẫn là điều làm mình ấn tượng nhất!" 🌷💘`,
+                sender: "Một người luôn quý mến bạn 💌"
+            }
+        };
+
+        let currentMode = 'group';
+
+        function switchPresetMode(modeKey) {
+            currentMode = modeKey;
+            const preset = letterPresets[modeKey];
+            if (!preset) return;
+
+            // Update active button state
+            ['group', 'bestie', 'special'].forEach(k => {
+                const btn = document.getElementById(`tab-${k}`);
+                if (btn) {
+                    if (k === modeKey) btn.classList.add('active');
+                    else btn.classList.remove('active');
+                }
+            });
+
+            // Apply content
+            updateLetterDOM(preset.recipient, preset.title, preset.body, preset.sender, preset.quote, preset.badge);
+            spawnFloatingToast(`✨ Đã chuyển sang chế độ: ${preset.recipient}`, window.innerWidth / 2, 90);
+            triggerBurst(window.innerWidth / 2, 180, 20);
+        }
+
+        function applyModalPreset(modeKey) {
+            const preset = letterPresets[modeKey];
+            if (!preset) return;
+            document.getElementById('input-recipient').value = preset.recipient;
+            document.getElementById('input-title').value = preset.title;
+            document.getElementById('input-body').value = preset.body;
+            document.getElementById('input-sender').value = preset.sender;
+        }
+
+        function updateLetterDOM(recipient, title, bodyText, sender, quoteText = null, badgeText = null) {
+            document.getElementById('envelope-to-name').textContent = recipient;
+            document.getElementById('preview-recipient').textContent = `Gửi ${recipient} 💖`;
+            document.getElementById('letter-title-display').textContent = title;
+            document.getElementById('letter-sender-display').textContent = sender;
+
+            if (quoteText) {
+                document.getElementById('letter-quote-display').textContent = quoteText;
+            }
+            if (badgeText) {
+                document.getElementById('badge-girl-title').textContent = badgeText;
+            }
+
+            const bodyContainer = document.getElementById('letter-body-display');
+            bodyContainer.innerHTML = '';
+            const paragraphs = bodyText.split(/\n\s*\n/);
+            paragraphs.forEach(pText => {
+                const p = document.createElement('p');
+                p.textContent = pText.trim();
+                bodyContainer.appendChild(p);
+            });
+        }
+
+        // Check URL parameters on page load for personalized sharing (?to=Lan&from=Minh&mode=special)
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const modeParam = params.get('mode');
+            const toParam = params.get('to');
+            const fromParam = params.get('from');
+
+            if (modeParam && letterPresets[modeParam]) {
+                switchPresetMode(modeParam);
+            }
+            if (toParam) {
+                document.getElementById('envelope-to-name').textContent = toParam;
+                document.getElementById('preview-recipient').textContent = `Gửi ${toParam} 💖`;
+                document.getElementById('letter-title-display').textContent = `Gửi ${toParam} xinh đẹp và rạng rỡ nhất! 💖`;
+                document.getElementById('input-recipient').value = toParam;
+            }
+            if (fromParam) {
+                document.getElementById('letter-sender-display').textContent = fromParam;
+                document.getElementById('input-sender').value = fromParam;
+            }
+        });
+
+        /* =========================================================================
+           2. FLOATING ROSE PETALS, HEARTS & SPARKLES CANVAS ANIMATION
+           ========================================================================= */
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class FloatingParticle {
+            constructor(isBurst = false, startX = null, startY = null) {
+                this.reset(isBurst, startX, startY);
+            }
+
+            reset(isBurst = false, startX = null, startY = null) {
+                this.x = startX !== null ? startX : Math.random() * canvas.width;
+                this.y = startY !== null ? startY : (isBurst ? canvas.height / 2 : Math.random() * canvas.height - canvas.height);
+                this.size = Math.random() * 11 + 7;
+                this.speedY = isBurst ? (Math.random() * -8 - 2) : (Math.random() * 1.1 + 0.5);
+                this.speedX = isBurst ? (Math.random() * 10 - 5) : (Math.random() * 1.1 - 0.55);
+                this.gravity = isBurst ? 0.14 : 0;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.03;
+                this.oscillationSpeed = Math.random() * 0.025 + 0.01;
+                this.oscillationTime = Math.random() * Math.PI * 2;
+                this.opacity = Math.random() * 0.55 + 0.35;
+                this.isBurst = isBurst;
+
+                const rand = Math.random();
+                if (rand < 0.45) this.type = 'petal';
+                else if (rand < 0.78) this.type = 'heart';
+                else this.type = 'sparkle';
+
+                const colors = ['#ff4d6d', '#ff758f', '#ff8fab', '#fb6f92', '#ffd166'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            update() {
+                this.oscillationTime += this.oscillationSpeed;
+                if (this.isBurst) {
+                    this.speedY += this.gravity;
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.opacity -= 0.006;
+                } else {
+                    this.y += this.speedY;
+                    this.x += this.speedX + Math.sin(this.oscillationTime) * 0.6;
+                }
+                this.rotation += this.rotationSpeed;
+
+                if (!this.isBurst && this.y > canvas.height + 30) {
+                    this.reset(false);
+                    this.y = -20;
+                }
+            }
+
+            draw() {
+                if (this.opacity <= 0) return;
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.globalAlpha = Math.max(0, this.opacity);
+                ctx.fillStyle = this.color;
+
+                if (this.type === 'petal') {
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.bezierCurveTo(-this.size / 2, -this.size / 2, -this.size, this.size / 3, 0, this.size);
+                    ctx.bezierCurveTo(this.size, this.size / 3, this.size / 2, -this.size / 2, 0, 0);
+                    ctx.fill();
+                } else if (this.type === 'heart') {
+                    const s = this.size * 0.65;
+                    ctx.beginPath();
+                    ctx.moveTo(0, s / 4);
+                    ctx.bezierCurveTo(0, 0, -s / 2, 0, -s / 2, s / 4);
+                    ctx.bezierCurveTo(-s / 2, s / 2, 0, s * 0.75, 0, s);
+                    ctx.bezierCurveTo(0, s * 0.75, s / 2, s / 2, s / 2, s / 4);
+                    ctx.bezierCurveTo(s / 2, 0, 0, 0, 0, s / 4);
+                    ctx.fill();
+                } else {
+                    // 4-point sparkle star
+                    const r = this.size * 0.6;
+                    ctx.fillStyle = '#ffd166';
+                    ctx.beginPath();
+                    ctx.moveTo(0, -r);
+                    ctx.quadraticCurveTo(0, 0, r, 0);
+                    ctx.quadraticCurveTo(0, 0, 0, r);
+                    ctx.quadraticCurveTo(0, 0, -r, 0);
+                    ctx.quadraticCurveTo(0, 0, 0, -r);
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 40; i++) {
+            const p = new FloatingParticle(false);
+            p.y = Math.random() * canvas.height;
+            particles.push(p);
+        }
+
+        function triggerBurst(x, y, count = 35) {
+            for (let i = 0; i < count; i++) {
+                particles.push(new FloatingParticle(true, x, y));
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles = particles.filter(p => !p.isBurst || p.opacity > 0);
+            for (const p of particles) {
+                p.update();
+                p.draw();
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        /* =========================================================================
+           3. ENVELOPE OPEN / CLOSE ANIMATION
+           ========================================================================= */
+        let isEnvelopeOpen = false;
+
+        function openEnvelope() {
+            if (isEnvelopeOpen) return;
+            isEnvelopeOpen = true;
+
+            const envelope = document.getElementById('envelope');
+            const envelopeStage = document.getElementById('envelope-stage');
+            const letterStage = document.getElementById('letter-stage');
+
+            if (!isPlayingMusic) {
+                startMusicBox();
+            }
+
+            envelope.classList.add('open');
+            triggerBurst(window.innerWidth / 2, window.innerHeight / 2, 48);
+
+            setTimeout(() => {
+                envelopeStage.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                setTimeout(() => {
+                    envelopeStage.classList.add('hidden');
+                    letterStage.classList.remove('hidden');
+                    void letterStage.offsetWidth;
+                    letterStage.classList.remove('opacity-0', 'translate-y-8');
+                    letterStage.classList.add('opacity-100', 'translate-y-0');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 450);
+            }, 1150);
+        }
+
+        function closeEnvelope() {
+            isEnvelopeOpen = false;
+            const envelope = document.getElementById('envelope');
+            const envelopeStage = document.getElementById('envelope-stage');
+            const letterStage = document.getElementById('letter-stage');
+
+            letterStage.classList.remove('opacity-100', 'translate-y-0');
+            letterStage.classList.add('opacity-0', 'translate-y-8');
+
+            setTimeout(() => {
+                letterStage.classList.add('hidden');
+                envelope.classList.remove('open');
+                envelopeStage.classList.remove('hidden', 'opacity-0', 'scale-95', 'pointer-events-none');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 500);
+        }
+
+        /* =========================================================================
+           4. BLIND BOX (TÚI MÙ VẬN MAY 20/10) & COMPLIMENT GENERATOR
+           ========================================================================= */
+        const blindBoxSurprises = [
+            {
+                icon: "👑",
+                title: "Vía Nhan Sắc Thăng Hạng 1000%",
+                desc: "Chúc mừng! Tháng này da đẹp dáng xinh, chụp ảnh góc nào cũng thần thái đỉnh cao!"
+            },
+            {
+                icon: "🧋",
+                title: "Vía Tiền Đầy Ví & Trà Sữa Full Topping",
+                desc: "Tài lộc rủng rỉnh, đi ăn uống thỏa thích không lo tăng cân, luôn có người bao ăn!"
+            },
+            {
+                icon: "🚀",
+                title: "Vía Mọi Deadline Đều Qua Nhẹ Nhàng",
+                desc: "Học tập điểm A+, công việc suôn sẻ thuận lợi, sếp quý đồng nghiệp thương!"
+            },
+            {
+                icon: "💖",
+                title: "Vía Ngập Tràn Yêu Thương & Bất Ngờ",
+                desc: "Sắp có tin vui bất ngờ tìm đến! Luôn được cưng chiều như công chúa mỗi ngày!"
+            }
+        ];
+
+        function openBlindBox(cardEl, index) {
+            const prize = blindBoxSurprises[index];
+            cardEl.classList.add('opened');
+
+            cardEl.querySelector('.box-icon').textContent = prize.icon;
+            cardEl.querySelector('.box-title').textContent = prize.title;
+            cardEl.querySelector('.box-desc').textContent = prize.desc;
+
+            const badge = cardEl.querySelector('.box-badge');
+            badge.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Đã nhả vía ✨';
+            badge.className = 'box-badge px-2.5 py-1 rounded-full bg-rose-500 text-white text-xs font-bold shrink-0 shadow';
+
+            const rect = cardEl.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            triggerBurst(centerX, centerY, 25);
+            spawnFloatingToast(`🎉 ${prize.title}!`, centerX, centerY);
+            playChimeNote(659.25);
+        }
+
+        let flowerScore = 10;
+        const cuteCompliments = [
+            "✨ Xinh đẹp 10 điểm không có nhưng!",
+            "🌷 Cười lên cái là sáng bừng cả bầu trời!",
+            "💖 Dễ thương vượt mức quy định!",
+            "👑 Nữ thần tháng 10 chính là bạn!",
+            "🧋 Chúc luôn tươi trẻ và rạng rỡ nhé!",
+            "🌹 Vừa xinh vừa giỏi ai chịu nổi!",
+            "🎀 Chúc 20/10 nhận quà mỏi tay nha!"
+        ];
+
+        function sendComplimentShower(event) {
+            flowerScore += 10;
+            document.getElementById('flower-counter').textContent = flowerScore;
+
+            const x = event ? event.clientX : window.innerWidth / 2;
+            const y = event ? event.clientY : window.innerHeight / 2;
+
+            triggerBurst(x, y, 32);
+            const randomMsg = cuteCompliments[Math.floor(Math.random() * cuteCompliments.length)];
+            spawnFloatingToast(randomMsg, x, y - 20);
+            playChimeNote(587.33 + (flowerScore % 4) * 55);
+        }
+
+        function spawnFloatingToast(text, x, y) {
+            const el = document.createElement('div');
+            el.className = 'floating-toast bg-white/95 text-rose-600 font-bold px-4 py-2 rounded-full shadow-xl border-2 border-pink-300 text-xs sm:text-sm whitespace-nowrap';
+            el.textContent = text;
+
+            const safeX = Math.min(Math.max(x - 115, 14), window.innerWidth - 260);
+            const safeY = Math.min(Math.max(y - 30, 60), window.innerHeight - 80);
+
+            el.style.left = `${safeX}px`;
+            el.style.top = `${safeY}px`;
+
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 3000);
+        }
+
+        /* =========================================================================
+           5. CUSTOMIZE MODAL, PHOTO UPLOAD & PERSONALIZED LINK SHARING
+           ========================================================================= */
+        function openEditModal() {
+            document.getElementById('edit-modal').classList.remove('hidden');
+            document.getElementById('edit-modal').classList.add('flex');
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.add('hidden');
+            document.getElementById('edit-modal').classList.remove('flex');
+        }
+
+        function saveCustomLetter() {
+            const recipient = document.getElementById('input-recipient').value.trim() || "Các Cô Gái Xinh Đẹp";
+            const title = document.getElementById('input-title').value.trim();
+            const body = document.getElementById('input-body').value.trim();
+            const sender = document.getElementById('input-sender').value.trim();
+
+            updateLetterDOM(recipient, title, body, sender);
+            closeEditModal();
+            spawnFloatingToast("💖 Đã lưu nội dung bức thư mới!", window.innerWidth / 2, 100);
+        }
+
+        function copyPersonalizedLink() {
+            const recipient = encodeURIComponent(document.getElementById('input-recipient').value.trim());
+            const sender = encodeURIComponent(document.getElementById('input-sender').value.trim());
+            const baseUrl = window.location.origin + window.location.pathname;
+            const shareUrl = `${baseUrl}?mode=${currentMode}&to=${recipient}&from=${sender}`;
+
+            const tempInput = document.createElement('input');
+            tempInput.value = shareUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            spawnFloatingToast("🔗 Đã sao chép link cá nhân hóa!", window.innerWidth / 2, 100);
+        }
+
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgEl = document.getElementById('custom-girl-photo');
+                const svgEl = document.getElementById('default-girl-svg');
+                imgEl.src = e.target.result;
+                imgEl.classList.remove('hidden');
+                svgEl.classList.add('hidden');
+                spawnFloatingToast("📸 Đã thay ảnh thành công!", window.innerWidth / 2, 100);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetToDefaultIllustration() {
+            document.getElementById('custom-girl-photo').classList.add('hidden');
+            document.getElementById('default-girl-svg').classList.remove('hidden');
+            spawnFloatingToast("🎨 Đã dùng lại tranh vẽ Chibi!", window.innerWidth / 2, 100);
+        }
+
+        /* =========================================================================
+           6. CHEERFUL WEB AUDIO API MUSIC BOX MELODY
+           ========================================================================= */
+        let audioCtx = null;
+        let isPlayingMusic = false;
+        let melodyInterval = null;
+        let noteIndex = 0;
+
+        // Bright, sweet melody notes (C5, D5, E5, G5, A5, C6)
+        const melodyNotes = [
+            523.25, 659.25, 783.99, 1046.50, 880.00, 783.99, 659.25, 783.99,
+            587.33, 659.25, 783.99, 659.25, 523.25, 587.33, 659.25, 523.25
+        ];
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContextClass();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playChimeNote(freq) {
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.08, audioCtx.currentTime + 0.03);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.4);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 1.45);
+            } catch (e) {}
+        }
+
+        function startMusicBox() {
+            initAudio();
+            isPlayingMusic = true;
+            updateMusicButtonUI();
+
+            if (melodyInterval) clearInterval(melodyInterval);
+            playChimeNote(melodyNotes[noteIndex % melodyNotes.length]);
+            noteIndex++;
+
+            melodyInterval = setInterval(() => {
+                if (!isPlayingMusic) return;
+                const freq = melodyNotes[noteIndex % melodyNotes.length];
+                playChimeNote(freq);
+                noteIndex++;
+            }, 600);
+        }
+
+        function stopMusicBox() {
+            isPlayingMusic = false;
+            if (melodyInterval) {
+                clearInterval(melodyInterval);
+                melodyInterval = null;
+            }
+            updateMusicButtonUI();
+        }
+
+        function toggleMusic() {
+            if (isPlayingMusic) stopMusicBox();
+            else startMusicBox();
+        }
+
+        function updateMusicButtonUI() {
+            const textEl = document.getElementById('music-text');
+            const iconEl = document.getElementById('music-icon');
+            if (isPlayingMusic) {
+                textEl.textContent = 'Nhạc: Bật';
+                iconEl.className = 'fa-solid fa-volume-high animate-pulse';
+            } else {
+                textEl.textContent = 'Nhạc: Tắt';
+                iconEl.className = 'fa-solid fa-volume-xmark';
+            }
+        }
+    </script>
+</body>
+</html>
